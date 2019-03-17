@@ -2,7 +2,6 @@ package com.example.anonsurf.xo;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class ListenClick implements View.OnClickListener{
     private int x,y;
@@ -27,7 +26,7 @@ public class ListenClick implements View.OnClickListener{
         if(MainActivity.getTurn() == 1) MainActivity.setTurn(2);
         else MainActivity.setTurn(1);
 
-        if(this.checkSuccess(view)){
+        if(this.checkSuccess()){
             if(MainActivity.success[0][0]==5)  MainActivity.setBtn1(view);
             if(MainActivity.success[0][1]==5)  MainActivity.setBtn2(view);
             if(MainActivity.success[0][2]==5)  MainActivity.setBtn3(view);
@@ -42,7 +41,7 @@ public class ListenClick implements View.OnClickListener{
         }
     }
 
-    public boolean checkSuccess(View view){
+    public boolean checkSuccess(){
         //-------------------------
         if((MainActivity.success[0][0]==1 && MainActivity.success[0][1]==1 && MainActivity.success[0][2]==1) ||
                 (MainActivity.success[0][0]==2 && MainActivity.success[0][1]==2 && MainActivity.success[0][2]==2)){
@@ -51,14 +50,14 @@ public class ListenClick implements View.OnClickListener{
             MainActivity.success[0][2]=5;
             return true;
         }
-        else if((MainActivity.success[1][0]==1 && MainActivity.success[1][1]==1 && MainActivity.success[1][2]==1) ||
+        if((MainActivity.success[1][0]==1 && MainActivity.success[1][1]==1 && MainActivity.success[1][2]==1) ||
                 (MainActivity.success[1][0]==2 && MainActivity.success[1][1]==2 && MainActivity.success[1][2]==2)){
             MainActivity.success[1][0]=5;
             MainActivity.success[1][1]=5;
             MainActivity.success[1][2]=5;
             return true;
         }
-        else if((MainActivity.success[2][0]==1 && MainActivity.success[2][1]==1 && MainActivity.success[2][2]==1) ||
+        if((MainActivity.success[2][0]==1 && MainActivity.success[2][1]==1 && MainActivity.success[2][2]==1) ||
                 (MainActivity.success[2][0]==2 && MainActivity.success[2][1]==2 && MainActivity.success[2][2]==2)){
             MainActivity.success[2][0]=5;
             MainActivity.success[2][1]=5;
@@ -67,14 +66,14 @@ public class ListenClick implements View.OnClickListener{
         }
 
         //-------------------------
-        else if((MainActivity.success[0][0]==1 && MainActivity.success[1][0]==1 && MainActivity.success[2][0]==1) ||
+        if((MainActivity.success[0][0]==1 && MainActivity.success[1][0]==1 && MainActivity.success[2][0]==1) ||
                 (MainActivity.success[0][0]==2 && MainActivity.success[1][0]==2 && MainActivity.success[2][0]==2)){
             MainActivity.success[0][0]=5;
             MainActivity.success[1][0]=5;
             MainActivity.success[2][0]=5;
             return true;
         }
-        else if((MainActivity.success[0][1]==1 && MainActivity.success[1][1]==1 && MainActivity.success[2][1]==1) ||
+        if((MainActivity.success[0][1]==1 && MainActivity.success[1][1]==1 && MainActivity.success[2][1]==1) ||
                 (MainActivity.success[0][1]==2 && MainActivity.success[1][1]==2 && MainActivity.success[2][1]==2)){
             MainActivity.success[0][1]=5;
             MainActivity.success[1][1]=5;
@@ -82,7 +81,7 @@ public class ListenClick implements View.OnClickListener{
 
             return true;
         }
-        else if((MainActivity.success[0][2]==1 && MainActivity.success[1][2]==1 && MainActivity.success[2][2]==1) ||
+        if((MainActivity.success[0][2]==1 && MainActivity.success[1][2]==1 && MainActivity.success[2][2]==1) ||
                 (MainActivity.success[0][2]==2 && MainActivity.success[1][2]==2 && MainActivity.success[2][2]==2)){
             MainActivity.success[0][2]=5;
             MainActivity.success[1][2]=5;
@@ -91,14 +90,14 @@ public class ListenClick implements View.OnClickListener{
         }
 
         //-------------------------
-        else if((MainActivity.success[0][0]==1 && MainActivity.success[1][1]==1 && MainActivity.success[2][2]==1) ||
+        if((MainActivity.success[0][0]==1 && MainActivity.success[1][1]==1 && MainActivity.success[2][2]==1) ||
                 (MainActivity.success[0][0]==2 && MainActivity.success[1][1]==2 && MainActivity.success[2][2]==2)){
             MainActivity.success[0][0]=5;
             MainActivity.success[1][1]=5;
             MainActivity.success[2][2]=5;
             return true;
         }
-        else if((MainActivity.success[0][2]==1 && MainActivity.success[1][1]==1 && MainActivity.success[2][0]==1) ||
+        if((MainActivity.success[0][2]==1 && MainActivity.success[1][1]==1 && MainActivity.success[2][0]==1) ||
                 (MainActivity.success[0][2]==2 && MainActivity.success[1][1]==2 && MainActivity.success[2][0]==2)){
             MainActivity.success[0][2]=5;
             MainActivity.success[1][1]=5;
@@ -107,21 +106,19 @@ public class ListenClick implements View.OnClickListener{
         }
 
         //-------------------------
-        else {
-            int no_tie=0;
-            for(int i=0;i<3;i++){
-                for(int j=0;j<3;j++){
-                    if(MainActivity.success[i][j] == 0) {
-                        no_tie=1;
-                        break;
-                    }
+        int no_tie=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(MainActivity.success[i][j] == 0) {
+                    no_tie=1;
+                    break;
                 }
             }
-            if(no_tie == 0) {
-                MainActivity.setTurn(0);
-                MainActivity.finishGames();
-            }
-            return false;
         }
+        if(no_tie == 0) {
+            MainActivity.setTurn(0);
+            MainActivity.finishGames();
+        }
+        return false;
     }
 }
